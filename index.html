@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=yes">
+
+<html>
+<head>
+  <title>Loading the map...</title>
+
+  <script type="text/javascript">
+		function downloadJSAtOnload() {
+			var element = document.createElement("script");
+			element.src = "scripts/map2.js";
+			document.body.appendChild(element);
+		}
+		if (window.addEventListener)
+			window.addEventListener("load", downloadJSAtOnload, false);
+		else if (window.attachEvent)
+			window.attachEvent("onload", downloadJSAtOnload);
+		else window.onload = downloadJSAtOnload;
+  </script>
+
+  <!-- Leaflet (CSS only) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <!-- Leaflet.awesome-markers -->
+  <link rel="stylesheet" type="text/css" href="scripts/Leaflet.awesome-markers/leaflet.awesome-markers.css">
+  <!-- Markercluster -->
+  <link rel="stylesheet" href="scripts/Leaflet.markercluster/MarkerCluster.css">
+  <link rel="stylesheet" href="scripts/Leaflet.markercluster/MarkerCluster.Default.css">
+  <!-- Mapzen Search -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.7.1/leaflet-geocoder-mapzen.css">
+  <!-- Locate Control -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.60.0/L.Control.Locate.min.css" />
+  <!-- Custom style sheet -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- Sidebar style sheet -->
+  <link rel="stylesheet" href="css/leaflet-sidebar.css" />
+  <!-- New search style sheet -->
+  <link rel="stylesheet" href="js/leaflet-search.css" />
+
+  <!-- OSX Style CSS files -->
+  <link type='text/css' href='css/osx.css' rel='stylesheet' media='screen' />
+
+  <!-- CSS above, JS below -->
+
+  <script type='text/javascript' src='js/jquery.js'></script>
+  <script type='text/javascript' src='js/jquery.simplemodal.js'></script>
+  <script type='text/javascript' src='js/osx.js'></script>
+  
+  <!-- jQuery
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"
+    integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+    crossorigin="anonymous"></script> -->
+  <!-- jQuery-CSV -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+  <!-- leaflet-providers -->
+  <script src="scripts/leaflet-providers/leaflet-providers.js"></script>
+  <!-- Awesome Markers -->
+  <script type="text/javascript" src="scripts/Leaflet.awesome-markers/leaflet.awesome-markers.min.js"></script>
+  <!-- Tabletop -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.js"></script>
+  <!-- Markercluster -->
+  <script type="text/javascript" src="scripts/Leaflet.markercluster/leaflet.markercluster.js"></script>
+  <!-- Mapzen -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-geocoder-mapzen/1.7.1/leaflet-geocoder-mapzen.js"></script>
+  <!-- Locate Control -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.60.0/L.Control.Locate.min.js"></script>  
+
+  <script type="text/javascript" src="google-doc-url.js"></script>
+  <script type="text/javascript" src="scripts/constants.js"></script>
+  <script type="text/javascript" src="scripts/palette.js"></script>
+  <script type="text/javascript" src="scripts/polylabel.js"></script>
+  <script type="text/javascript" src="scripts/procsv.js"></script>
+  <!-- Map JS -->
+  <script type="text/javascript" src="scripts/map.js"></script>
+  <!-- Sidebar JS -->
+  <script src="js/leaflet-sidebar.js"></script>
+  <!-- New search js -->
+  <script src="js/leaflet-search.js"></script>
+
+  <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body, #map {
+            height: 100%;
+            font: 11pt 'Sofia Pro', "Helvetica Neue", Arial, Helvetica, sans-serif;
+        }
+
+        .lorem {
+            font-style: italic;
+            color: #AAA;
+        }
+
+        input[type="text"] {
+          display: block;
+          margin: 0;
+          width: 100%;
+          font-size: 18px;
+          appearance: none;
+          box-shadow: none;
+          border-radius: none;
+          padding: 10px;
+          border: solid 1px #dcdcdc;
+          transition: box-shadow 0.3s, border 0.3s;
+          font-family: 'Sofia Pro';
+        }
+        input[type="text"]:focus {
+          outline: none;
+          border: solid 1px #707070;
+          box-shadow: 0 0 5px 1px #969696;
+        }
+
+        button {
+          display: inline-block;
+          margin: 0 10px 20px 0;
+          padding: 15px 45px;
+          font-size: 20px;
+          line-height: 1.3;
+          appearance: none;
+          box-shadow: none;
+          border-radius: 0;
+          color: #6496c8;
+          background: rgba(0,0,0,0);
+          border: solid 5px #6496c8;
+          font-family: 'Simplon Mono', monospace;
+        }
+
+        button:focus {
+          outline: none
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+  <div class="loader">Loading...</div>
+
+  <div id="sidebar" class="sidebar collapsed">
+      <!-- Nav tabs -->
+      <div class="sidebar-tabs">
+          <ul role="tablist">
+              <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+              <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
+              <!-- <li><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+              <li><a href="https://github.com/Turbo87/sidebar-v2" role="tab" target="_blank"><i class="fa fa-github"></i></a></li> -->
+          </ul>
+
+          <ul role="tablist">
+              <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+          </ul>
+      </div>
+
+      <!-- Tab panes -->
+      <div class="sidebar-content">
+          <div class="sidebar-pane" id="home">
+              <h1 class="sidebar-header" >Filter and Search<span class="sidebar-close" ></span></h1>
+              </br>
+              <a href='#' class='osx'>Click here to add layers...</a>
+              <!-- modal content -->
+              <div id="osx-modal-content">
+                <div id="osx-modal-title">Add Shared Layers from Other Orgs!</div>
+                <div class="close"><a href="#" class="simplemodal-close">x</a></div>
+                <div id="osx-modal-data">
+                  <!-- <h2>Add Shared Layers from Other Orgs!</h2> -->
+                  </br>
+                  <input type="text" placeholder="Paste a google sheet link here (make sure it's public)" class="focus" style="width:96%">
+                  </br>
+                  <center><button class="simplemodal-close">Add to Map!</button> </center>
+                </div>
+              </div>
+
+              
+              <p>Want to know who’s organizing nearby on different issues?</p> 
+              <p>Use the magnifying glass to search locations or just click and zoom in to your city and then play around with the category toggles. The button below the magnifying glass will take you straight to your location.</p>
+              <div id="legend"></div>
+
+              <p class="lorem"></p>
+              
+          </div>
+
+          <div class="sidebar-pane" id="profile">
+              <h1 class="sidebar-header">Project Details<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+              <p>A critical chapter in the history of our nation is being written. This project aims to map the networks of actors holding the pens. As our country transitions to new leaders organizing around the principles of <strong>anger</strong> and <strong>fear of the other</strong>, resistance is bubbling up among women, students, young people, black, Latino, and Asian people, immigrants and LGBTQ communities. Whether these groups unite and build a powerful movement to maintain and expand democracy is the essential question of our day. </p>
+              <p>This map is a project of <a href="http://colab.mit.edu/">MIT Community Innovator's Lab</a>. with knowledge sourced from a crowd of engaged citizens.</p>
+          </div>
+
+          <!-- <div class="sidebar-pane" id="messages">
+              <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+          </div> -->
+
+          <div class="sidebar-pane" id="settings" class="squaredThree">
+              <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+          </div>
+
+      </div>
+  </div>
+
+  <div id="map" class="sidebar-map"></div>
+
+  
+
+  <!-- Load Sidebar -->
+  <script type="text/javascript">
+    var map = L.map('map', {
+      attributionControl: false,
+      zoomControl: false,
+      scrollWheelZoom: false
+    }).setView([40.14,-98.91], 5); // default center is overridden by Google Sheet options and points
+
+    var sidebar = L.control.sidebar('sidebar').addTo(map);
+
+  </script>
+  
+
+</body>
+</html>
