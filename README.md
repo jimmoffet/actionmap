@@ -1,4 +1,4 @@
-# actionmap
+# Action Organizing Mapping Tool
 
 ![Alt text](screen.png?raw=true "Direct Action Organizing Map")
 
